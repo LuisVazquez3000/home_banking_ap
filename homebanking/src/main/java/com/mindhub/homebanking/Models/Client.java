@@ -16,7 +16,8 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    @GenericGenerator(name = "native", strategy = "native")
+    public long id;
     private String firstName;
     private String lastName;
 
@@ -29,7 +30,7 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public Client(int id, String firstName, String lastName, String email) {
+    public Client(long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,7 +61,7 @@ public class Client {
         this.email = email;
     }
 
-    public  int getId(){
+    public  long getId(){
         return id;
     }
 
