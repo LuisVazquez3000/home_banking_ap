@@ -19,13 +19,13 @@ public CommandLineRunner initData(ClientRepository clientRepository){
 
 return (args -> {
 Client client1 = new Client();
-		client1.setId(123);
+//		client1.setId(123);
 		client1.setFirstName("Luis");
 		client1.setLastName("Vazquez");
 		client1.setEmail("luis@vazquez.com");
 
 Client client2 = new Client();
-		client2.setId(321);
+//		client2.setId(321);
 		client2.setFirstName("Martin");
 		client2.setLastName("Cruz");
 		client2.setEmail("martin@cruz.com");
