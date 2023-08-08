@@ -6,7 +6,9 @@ import javax.persistence.GenerationType;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Id;
 import java.time.LocalDate;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 
 @Entity
 public class Account {
@@ -19,6 +21,12 @@ public class Account {
     private LocalDate creationDate;
 
     private double balance;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="owner_id")
+    private Client owner;
+
 
 
     public Account() {
@@ -62,6 +70,18 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+
+    public Client getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
+    }
+
+
+
 }
 
 
