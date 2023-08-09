@@ -3,6 +3,8 @@ package com.mindhub.homebanking.Models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Id;
 import java.time.LocalDate;
@@ -24,19 +26,20 @@ public class Account {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="owner_id")
-    private Client owner;
+    @JoinColumn(name="client_id")
+    private Client client;
 
 
 
     public Account() {
     }
 
-    public Account(long id, String number, LocalDate creationDate, double balance) {
+    public Account( long id, String number, LocalDate creationDate, double balance) {
         this.id = id;
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+
     }
 
     public long getId() {
@@ -70,18 +73,14 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
-
-    public Client getOwner() {
-        return owner;
+    @JsonIgnore
+    public Client getClient() {
+        return client;
     }
 
-    public void setOwner(Client owner) {
-        this.owner = owner;
+    public void setClient(Client client) {
+        this.client = client;
     }
-
-
-
 }
 
 
