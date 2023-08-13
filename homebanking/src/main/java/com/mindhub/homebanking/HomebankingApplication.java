@@ -58,6 +58,17 @@ Client client1 = new Client();
 	transaction1.setType(TransactionType.CREDIT);
 	account1.addTransaction(transaction1);
 	transactionRepository.save(transaction1);
+
+
+	Transaction transaction2 = new Transaction();
+	transaction2.setAmount(-1000.00);
+	transaction2.setDescription("pagos a proveedores");
+	transaction2.setDate(LocalDateTime.now());
+	transaction2.setType(TransactionType.DEBIT);
+	account1.addTransaction(transaction2);
+	transactionRepository.save(transaction2);
+
+
 });
 
 }
