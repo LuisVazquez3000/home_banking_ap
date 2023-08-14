@@ -3,7 +3,7 @@ package com.mindhub.homebanking.Models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -16,9 +16,8 @@ public class Loan {
     private double maxAmount;
 
     @ElementCollection
-    private List<Integer> payments;
-
-    protected Loan() {
+    private List<Integer> payments = new ArrayList<>();
+    public Loan() {
     }
 
     public Loan(long id, String name, double maxAmount, List<Integer> payments) {
@@ -32,7 +31,7 @@ public class Loan {
         return id;
     }
 
-   
+
 
     public String getName() {
         return name;
