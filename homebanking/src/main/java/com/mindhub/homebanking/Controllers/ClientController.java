@@ -30,9 +30,9 @@ public class ClientController {
         return new ClientDTO(repoClient.findById(id).orElse(null));
     }
 
-    public void getClient2(Long id){
-        repoClient.findAll().stream().filter(client-> Objects.equals(client.getId(), id));
-    }
+//    public void getClient2(Long id){
+//        repoClient.findAll().stream().filter(client-> Objects.equals(client.getId(), id));
+//    }
 
 
 
