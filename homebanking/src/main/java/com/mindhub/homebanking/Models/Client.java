@@ -4,10 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mindhub.homebanking.dtos.AccountDTO;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
@@ -30,17 +29,15 @@ public class Client {
     private String email;
 
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
-    private  Set<Account> accounts = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<ClientLoan> loans = new HashSet<>();
 
-    public Client() {
-    }
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<Card> cards = new HashSet<>();
 
-    public Client(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Client() {
     }
 
     public Client( String firstName, String lastName, String email) {
@@ -84,31 +81,40 @@ public class Client {
     }
 
 
+    public Set<ClientLoan> getClientLoans(){
+        return loans;
+    }
+
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+    public void setLoans(Set<ClientLoan> loans) {
+        this.loans = loans;
+    }
+    public Set<Card> getCards() {
+        return cards;
+    }
+//    public void setCards(Set<Card> cards) {
+//        this.cards = cards;
+//    }
+
     public void addAccount(Account account) {
         account.setClient(this);
         accounts.add(account);
     }
-    public Set<ClientLoan> getClientLoans(){
-        return loans;
-    }
+
     public void addClientLoans(ClientLoan clientLoan){
         clientLoan.setClient(this);
         loans.add(clientLoan);
     }
+    public void addCard(Card card){
+        card.setClient(this);
+        cards.add(card);
+    }
+
     @JsonIgnore
     public List<Loan> getLoans(){
         return loans.stream().map(clientLoan -> clientLoan.getLoan()).collect(Collectors.toList());
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", accounts=" + accounts +
-                ", loans=" + loans +
-                '}';
     }
 }

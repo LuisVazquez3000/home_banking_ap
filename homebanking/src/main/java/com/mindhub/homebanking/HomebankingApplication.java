@@ -24,7 +24,8 @@ public CommandLineRunner initData(ClientRepository clientRepository,
 								  AccountRepository accountRepository,
 								  TransactionRepository transactionRepository,
 								  LoanRepository loanRepository,
-								  ClientLoanRepository clientLoanRepository
+								  ClientLoanRepository clientLoanRepository,
+								  CardRepository cardRepository
 ){
 
 return (args -> {
@@ -121,6 +122,41 @@ return (args -> {
 		client2.addClientLoans(clientLoan4);
 		clientLoanRepository.save(clientLoan4);
 
+
+		Card card1 = new Card();
+		card1.setCardHolder(client1.getFirstName() + " " + client1.getLastName());
+		card1.setNumber("1234 4567 9874 6543");
+		card1.setCvv(555);
+		card1.setFromDate(LocalDate.now());
+		card1.setThruDate(LocalDate.now().plusYears(5));
+		card1.setType(CardType.CREDIT);
+		card1.setColor(CardColor.GOLD);
+		client1.addCard(card1);
+		cardRepository.save(card1);
+
+		Card card2 = new Card();
+		card2.setCardHolder(client1.getFirstName() + " "+client1.getLastName());
+		card2.setType(CardType.CREDIT);
+		card2.setColor(CardColor.TITANIUM);
+		card2.setNumber("9874 6543 1234 4567");
+		card2.setCvv(111);
+		card2.setFromDate(LocalDate.now());
+		card2.setThruDate(LocalDate.now().plusYears(5));
+
+		client1.addCard(card2);
+		cardRepository.save(card2);
+
+		Card card3 = new Card();
+		card3.setCardHolder(client1.getFirstName() + " "+client2.getLastName());
+		card3.setType(CardType.DEBIT);
+		card3.setColor(CardColor.SILVER);
+		card3.setNumber("1111 2222 3333 4444");
+		card3.setCvv(222);
+		card3.setFromDate(LocalDate.now());
+		card3.setThruDate(LocalDate.now().plusYears(5));
+
+		client1.addCard(card3);
+		cardRepository.save(card3);
 
 
 });
