@@ -2,10 +2,12 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.Models.*;
 import com.mindhub.homebanking.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +17,9 @@ import java.util.List;
 @SpringBootApplication
 public class HomebankingApplication {
 
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class, args);
 	}
@@ -33,12 +38,14 @@ return (args -> {
 		client1.setFirstName("Melba");
 		client1.setLastName("Morel");
 		client1.setEmail("melba@mindhub.com");
+		client1.setPassword(passwordEncoder.encode("melba"));
 		clientRepository.save(client1);
 
 		Client client2 = new Client();
 		client2.setFirstName("Luis");
 		client2.setLastName("Vazquez");
 		client2.setEmail("lv3k@mindhub.com");
+		client2.setPassword(passwordEncoder.encode("luis"));
 		clientRepository.save(client2);
 
 
