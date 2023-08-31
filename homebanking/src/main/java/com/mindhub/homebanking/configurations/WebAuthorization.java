@@ -29,7 +29,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                .antMatchers(HttpMethod.GET, "/api/clients").permitAll()
                .antMatchers("/admin/**").hasAuthority("ADMIN")
                .antMatchers("/manager.html", "manager.js").hasAuthority("ADMIN")
-               .antMatchers("/api/**", "/api/clients/current").hasAuthority("CLIENT");
+               .antMatchers("/api/**", "/api/clients/current").hasAuthority("ADMIN");
 
 
 
