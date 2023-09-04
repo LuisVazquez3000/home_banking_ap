@@ -26,24 +26,70 @@ public class Card {
     public Card() {
     }
 
-    public Card(Long id,
-                String cardHolder,
-                CardColor color,
-                CardType type,
-                String number,
-                Integer cvv,
-                LocalDate fromDate,
-                LocalDate thruDate,
-                Client client) {
-        this.id = id;
-        this.cardHolder = cardHolder;
+//    public Card(Long id,
+//                String cardHolder,
+//                CardColor color,
+//                CardType type,
+//                String number,
+//                Integer cvv,
+//                LocalDate fromDate,
+//                LocalDate thruDate,
+//                Client client) {
+//        this.id = id;
+//        this.cardHolder = cardHolder;
+//
+//        this.number = number;
+//        this.cvv = cvv;
+//        this.fromDate = fromDate;
+//        this.thruDate = thruDate;
+//
+//        this.client = client;
+//    }  public Card(Long id,
+//                String cardHolder,
+//                CardColor color,
+//                CardType type,
+//                String number,
+//                Integer cvv,
+//                LocalDate fromDate,
+//                LocalDate thruDate,
+//                Client client) {
+//        this.id = id;
+//        this.cardHolder = cardHolder;
+//
+//        this.number = number;
+//        this.cvv = cvv;
+//        this.fromDate = fromDate;
+//        this.thruDate = thruDate;
+//
+//        this.client = client;
+//    }  public Card(Long id,
+//                String cardHolder,
+//                CardColor color,
+//                CardType type,
+//                String number,
+//                Integer cvv,
+//                LocalDate fromDate,
+//                LocalDate thruDate,
+//                Client client) {
+//        this.id = id;
+//        this.cardHolder = cardHolder;
+//
+//        this.number = number;
+//        this.cvv = cvv;
+//        this.fromDate = fromDate;
+//        this.thruDate = thruDate;
+//
+//        this.client = client;
+//    }
 
+    public Card(String cardHolder, String number, Integer cvv, LocalDate fromDate, LocalDate thruDate, CardColor color, CardType type) {
+        this.cardHolder = cardHolder;
         this.number = number;
         this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
-
-        this.client = client;
+        this.color = color;
+        this.type = type;
     }
 
     public Long getId() {

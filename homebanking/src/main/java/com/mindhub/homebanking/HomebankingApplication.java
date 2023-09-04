@@ -49,7 +49,8 @@ return (args -> {
 		clientRepository.save(client2);
 
 
-		Account account1 = new Account();
+
+	Account account1 = new Account();
 		account1.setNumber("VIN001");
 		account1.setCreationDate(LocalDate.now());
 		account1.setBalance(5000.00);

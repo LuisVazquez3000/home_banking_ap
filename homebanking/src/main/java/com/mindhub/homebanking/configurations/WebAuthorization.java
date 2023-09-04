@@ -1,9 +1,7 @@
 package com.mindhub.homebanking.configurations;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -26,10 +24,11 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                .antMatchers("/web/index.html", "/web/css/style.css", "/web/js/index.js", "/web/img/**").permitAll()
                .antMatchers(HttpMethod.POST, "/api/login").permitAll()
                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-               .antMatchers(HttpMethod.GET, "/api/clients").permitAll()
-               .antMatchers("/admin/**").hasAuthority("ADMIN")
+               .antMatchers("/admin/**", "/rest/**").hasAuthority("ADMIN")
                .antMatchers("/manager.html", "manager.js").hasAuthority("ADMIN")
-               .antMatchers("/api/**", "/api/clients/current").hasAuthority("ADMIN");
+               .antMatchers( "/api/clients/current",
+                       "/api/clients/current/accounts","/api/clients/current/cards").hasAnyAuthority("CLIENT", "ADMIN")
+               .antMatchers(HttpMethod.POST, "/api/clients/current/cards").hasAnyAuthority("CLIENT", "ADMIN");
 
 
 

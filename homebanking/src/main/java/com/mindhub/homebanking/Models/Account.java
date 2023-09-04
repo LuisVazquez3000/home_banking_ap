@@ -1,10 +1,9 @@
 package com.mindhub.homebanking.Models;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,7 +33,7 @@ public class Account {
     public Account() {
     }
 
-    public Account( long id, String number, LocalDate creationDate, double balance) {
+    public Account(long id, String number, LocalDate creationDate, double balance) {
         this.id = id;
         this.number = number;
         this.creationDate = creationDate;

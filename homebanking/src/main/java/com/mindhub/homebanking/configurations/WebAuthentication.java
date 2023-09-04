@@ -28,6 +28,11 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
         auth.userDetailsService(email ->{
             Client client = repoClient.findByEmail(email);
             if (client != null){
+
+                if (client.getEmail().toLowerCase().contains("admin")){
+                return new User(client.getEmail(), client.getPassword(),
+                        AuthorityUtils.createAuthorityList("ADMIN"));
+                }
                 return new User(client.getEmail(), client.getPassword(),
                         AuthorityUtils.createAuthorityList("CLIENT"));
 

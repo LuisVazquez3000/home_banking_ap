@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -82,6 +82,8 @@
                     <div class="row mt-3">
                         <div class="col">
                             <h2 class="display-6 subtitle">Accounts</h2>
+                            <button v-if="clientInfo.accounts != null && clientInfo.accounts.length < 3"
+                                v-on:click="create" id="create" class="btn btn-sm btn-success">Create</button>
                         </div>
                     </div>
                     <div class="row mx-2">
